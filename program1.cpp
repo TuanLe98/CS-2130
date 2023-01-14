@@ -1,168 +1,61 @@
-#include <iostream>
-#include <stdlib.h>
-
+#include<iostream>
 using namespace std;
-
 int main()
 {
-    bool p=false, q=false, res;
-    int option;
-    do{
-        cout<<("Which operation do you want to perform?"
-               "\nQuestion 1- Do you want to use And or Or?"
-               "\nQuestion 2- Do you want to NOT p?"
-               "\nQuestion 3- Do you want to NOT q?"
-               "\n************************************************"
-               "\n*               1. AND                         *"
-               "\n*               2. OR                          *"
-               "\n*               3. NOT p                       *"
-               "\n*               4. NOT q                       *"
-               "\n*               5. Quit                        *"
-               "\n************************************************\n")<<endl;
-        cout<<("Enter an integer for option + ENTER: ");
-        cin>>option;
-        switch (option) {
-            case 1:
-                cout<<"p q pAq"<<endl;
-                cout<<"------------------"<<endl;
-                res = p & q;
-                cout<<p<<" "<<q<<" "<<res<<endl;
-                q = true;
-                res = p & q;
-                cout<<p<<" "<<q<<" "<<res<<endl;
-                p = true;
-                q = false;
-                res = p & q;
-                cout<<p<<" "<<q<<" "<<res<<endl;
-                q = true;
-                res = p & q;
-                cout<<p<<" "<<q<<" "<<res<<endl;
-                break;
-            case 2:
-                cout<<"p q pVq"<<endl;
-                cout<<"------------------"<<endl;
-                res = p | q;
-                cout<<p<<" "<<q<<" "<<res<<endl;
-                q = true;
-                res = p | q;
-                cout<<p<<" "<<q<<" "<<res<<endl;
-                p = true;
-                q = false;
-                res = p | q;
-                cout<<p<<" "<<q<<" "<<res<<endl;
-                q = true;
-                res = p | q;
-                cout<<p<<" "<<q<<" "<<res<<endl;
-                break;
-            case 3:
-                cout<<"p ~p"<<endl;
-                cout<<"------"<<endl;
-                cout<<p<<" "<<!p<<endl;
-                p = !p;
-                cout<<p<<" "<<!p<<endl;;
-                break;
-            case 4:
-                cout<<"q ~q"<<endl;
-                cout<<"------"<<endl;
-                cout<<q<<" "<<!q<<endl;
-                q = !q;
-                cout<<q<<" "<<!q<<endl;;
-                break;
-            default:
-                cout<<"Not a valid choice!!"<<endl;
-                break;
+    int op,p,q;
+    cout<<("Option 1: p and q"
+    "\nOption 2: p or q?");
+    cin>>op;
+    cout<<"Do you want to NOT p(1-Yes 0-No)?";
+    cin>>p;
+    cout<<"Do you want to NOT q(1-Yes 0-No)?";
+    cin>>q;
+    cout<<"p|q|";
+    cout<<"( ";
+    cout<<(p==1?"~p":"p");
+    cout<<(op==1?" ∧ ":" ∨ ");
+    cout<<(q==1?"~q":"q");
+    cout<<" )";
+    cout<<endl;
+
+    cout<<"-----------------";
+    cout<<endl;
+    for(int i=1; i>=0; i--){
+        for(int j=1; j>=0; j--){
+            cout<<(i==0?"F":"T")<<"|"<<(j==0?"F":"T");
+            cout<<"|";
+            if(op==1){
+                cout<<(((p==1?!i:i) and (q==1?!j:j))==1?"T":"F");
+            }
+            else{
+                cout<<(((p==1?!i:i) or (q==1?!j:j))==1?"T":"F");
+            }
+        cout<<endl;
         }
-    }while(option!=5);
-    return 0;
+    }
+
+return 0;
 }
 
-
 /* OUTPUT
- 
- Which operation do you want to perform?
- Question 1- Do you want to use And or Or?
- Question 2- Do you want to NOT p?
- Question 3- Do you want to NOT q?
- ************************************************
- *               1. AND                         *
- *               2. OR                          *
- *               3. NOT p                       *
- *               4. NOT q                       *
- *               5. Quit                        *
- ************************************************
-
- Enter an integer for option + ENTER: 1
- p q pAq
- ------------------
- 0 0 0
- 0 1 0
- 1 0 0
- 1 1 1
- Which operation do you want to perform?
- Question 1- Do you want to use And or Or?
- Question 2- Do you want to NOT p?
- Question 3- Do you want to NOT q?
- ************************************************
- *               1. AND                         *
- *               2. OR                          *
- *               3. NOT p                       *
- *               4. NOT q                       *
- *               5. Quit                        *
- ************************************************
-
- Enter an integer for option + ENTER: 2
- p q pVq
- ------------------
- 1 1 1
- 1 1 1
- 1 0 1
- 1 1 1
- Which operation do you want to perform?
- Question 1- Do you want to use And or Or?
- Question 2- Do you want to NOT p?
- Question 3- Do you want to NOT q?
- ************************************************
- *               1. AND                         *
- *               2. OR                          *
- *               3. NOT p                       *
- *               4. NOT q                       *
- *               5. Quit                        *
- ************************************************
-
- Enter an integer for option + ENTER: 3
- p ~p
- ------
- 1 0
- 0 1
- Which operation do you want to perform?
- Question 1- Do you want to use And or Or?
- Question 2- Do you want to NOT p?
- Question 3- Do you want to NOT q?
- ************************************************
- *               1. AND                         *
- *               2. OR                          *
- *               3. NOT p                       *
- *               4. NOT q                       *
- *               5. Quit                        *
- ************************************************
-
- Enter an integer for option + ENTER: 4
- q ~q
- ------
- 1 0
- 0 1
- Which operation do you want to perform?
- Question 1- Do you want to use And or Or?
- Question 2- Do you want to NOT p?
- Question 3- Do you want to NOT q?
- ************************************************
- *               1. AND                         *
- *               2. OR                          *
- *               3. NOT p                       *
- *               4. NOT q                       *
- *               5. Quit                        *
- ************************************************
-
- Enter an integer for option + ENTER: 5
- Not a valid choice!!
+ Option 1: p and q
+ Option 2: p or q?1
+ Do you want to negate p(1-Yes 0-No)?1
+ Do you want to negate q(1-Yes 0-No)?1
+ p|q|( ~p ∧ ~q )
+ -----------------
+ T|T|F
+ T|F|F
+ F|T|F
+ F|F|T
+ Option 1: p and q
+ Option 2: p or q?2
+ Do you want to NOT p(1-Yes 0-No)?1
+ Do you want to NOT q(1-Yes 0-No)?1
+ p|q|( ~p ∨ ~q )
+ -----------------
+ T|T|F
+ T|F|T
+ F|T|T
+ F|F|T
  */
